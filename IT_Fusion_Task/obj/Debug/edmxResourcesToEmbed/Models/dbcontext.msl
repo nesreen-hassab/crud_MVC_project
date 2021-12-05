@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="ITFusionEntities">
+    <EntitySetMapping Name="Eexp_Rev_type">
+      <EntityTypeMapping TypeName="Model.Eexp_Rev_type">
+        <MappingFragment StoreEntitySet="Eexp_Rev_type">
+          <ScalarProperty Name="id_ex_re" ColumnName="id_ex_re" />
+          <ScalarProperty Name="ex_re_type" ColumnName="ex_re_type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="IT_Expenses_Revenues">
+      <EntityTypeMapping TypeName="Model.IT_Expenses_Revenues">
+        <MappingFragment StoreEntitySet="IT_Expenses_Revenues">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Entry_Date" ColumnName="Entry_Date" />
+          <ScalarProperty Name="Exp_Rev_Name" ColumnName="Exp_Rev_Name" />
+          <ScalarProperty Name="Fees" ColumnName="Fees" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="id_ex_re" ColumnName="id_ex_re" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

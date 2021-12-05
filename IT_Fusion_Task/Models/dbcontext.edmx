@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Eexp_Rev_type">
+          <Key>
+            <PropertyRef Name="id_ex_re" />
+          </Key>
+          <Property Name="id_ex_re" Type="int" Nullable="false" />
+          <Property Name="ex_re_type" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="IT_Expenses_Revenues">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Entry_Date" Type="datetime" />
+          <Property Name="Exp_Rev_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Fees" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Note" Type="nvarchar(max)" />
+          <Property Name="id_ex_re" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_IT_Expenses_Revenues_Eexp_Rev_type">
+          <End Role="Eexp_Rev_type" Type="Self.Eexp_Rev_type" Multiplicity="1" />
+          <End Role="IT_Expenses_Revenues" Type="Self.IT_Expenses_Revenues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Eexp_Rev_type">
+              <PropertyRef Name="id_ex_re" />
+            </Principal>
+            <Dependent Role="IT_Expenses_Revenues">
+              <PropertyRef Name="id_ex_re" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="Eexp_Rev_type" EntityType="Self.Eexp_Rev_type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IT_Expenses_Revenues" EntityType="Self.IT_Expenses_Revenues" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_IT_Expenses_Revenues_Eexp_Rev_type" Association="Self.FK_IT_Expenses_Revenues_Eexp_Rev_type">
+            <End Role="Eexp_Rev_type" EntitySet="Eexp_Rev_type" />
+            <End Role="IT_Expenses_Revenues" EntitySet="IT_Expenses_Revenues" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Eexp_Rev_type">
+          <Key>
+            <PropertyRef Name="id_ex_re" />
+          </Key>
+          <Property Name="id_ex_re" Type="Int32" Nullable="false" />
+          <Property Name="ex_re_type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="IT_Expenses_Revenues" Relationship="Self.FK_IT_Expenses_Revenues_Eexp_Rev_type" FromRole="Eexp_Rev_type" ToRole="IT_Expenses_Revenues" />
+        </EntityType>
+        <EntityType Name="IT_Expenses_Revenues">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Entry_Date" Type="DateTime" Precision="3" />
+          <Property Name="Exp_Rev_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Fees" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="id_ex_re" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Eexp_Rev_type" Relationship="Self.FK_IT_Expenses_Revenues_Eexp_Rev_type" FromRole="IT_Expenses_Revenues" ToRole="Eexp_Rev_type" />
+        </EntityType>
+        <Association Name="FK_IT_Expenses_Revenues_Eexp_Rev_type">
+          <End Role="Eexp_Rev_type" Type="Self.Eexp_Rev_type" Multiplicity="1" />
+          <End Role="IT_Expenses_Revenues" Type="Self.IT_Expenses_Revenues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Eexp_Rev_type">
+              <PropertyRef Name="id_ex_re" />
+            </Principal>
+            <Dependent Role="IT_Expenses_Revenues">
+              <PropertyRef Name="id_ex_re" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ITFusionEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Eexp_Rev_type" EntityType="Self.Eexp_Rev_type" />
+          <EntitySet Name="IT_Expenses_Revenues" EntityType="Self.IT_Expenses_Revenues" />
+          <AssociationSet Name="FK_IT_Expenses_Revenues_Eexp_Rev_type" Association="Self.FK_IT_Expenses_Revenues_Eexp_Rev_type">
+            <End Role="Eexp_Rev_type" EntitySet="Eexp_Rev_type" />
+            <End Role="IT_Expenses_Revenues" EntitySet="IT_Expenses_Revenues" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="ITFusionEntities">
+          <EntitySetMapping Name="Eexp_Rev_type">
+            <EntityTypeMapping TypeName="Model.Eexp_Rev_type">
+              <MappingFragment StoreEntitySet="Eexp_Rev_type">
+                <ScalarProperty Name="id_ex_re" ColumnName="id_ex_re" />
+                <ScalarProperty Name="ex_re_type" ColumnName="ex_re_type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IT_Expenses_Revenues">
+            <EntityTypeMapping TypeName="Model.IT_Expenses_Revenues">
+              <MappingFragment StoreEntitySet="IT_Expenses_Revenues">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Entry_Date" ColumnName="Entry_Date" />
+                <ScalarProperty Name="Exp_Rev_Name" ColumnName="Exp_Rev_Name" />
+                <ScalarProperty Name="Fees" ColumnName="Fees" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="id_ex_re" ColumnName="id_ex_re" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

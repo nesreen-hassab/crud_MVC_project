@@ -1,0 +1,51 @@
+﻿@model IT_Fusion_Task.Models.IT_Expenses_Revenues
+
+<br />
+<br />
+<br />
+<br />
+<div class="container-fluid center-block">
+
+    @using (Html.BeginForm("Update", "ITFusion", FormMethod.Post, new { @class = "form-group center-block" }))
+    {
+
+        <br />
+        <div class="row ">
+            <div class="col-lg-3">@Html.LabelFor(Model => Model.Exp_Rev_Name, "Expenses_Rvenues Name  ", new { @class = "text-primary" })</div>
+            <div class="col-lg-5">@Html.TextBoxFor(Model => Model.Exp_Rev_Name, new { @class = "form-control" })</div>
+            <div class="col-lg-3">@Html.ValidationMessageFor(Model => Model.Exp_Rev_Name, null, new { @class = "text-danger" })</div>
+        </div>
+        <br />
+        <div class="row ">
+            <div class="col-lg-3">@Html.LabelFor(Model => Model.Fees, new { @class = "text-primary" })</div>
+            <div class="col-lg-5">@Html.TextBoxFor(Model => Model.Fees, new { @class = "form-control" })</div>
+            <div class="col-lg-3">@Html.ValidationMessageFor(Model => Model.Fees, null, new { @class = "text-danger" })</div>
+        </div>
+        <br />
+        <div class="row ">
+            <div class="col-lg-3">@Html.LabelFor(Model => Model.Entry_Date, new { @class = "text-primary" })</div>
+            <div class="col-lg-5">@Html.TextBoxFor(Model => Model.Entry_Date, new { @class = "form-control" })</div>
+            <div class="col-lg-3">@Html.ValidationMessageFor(Model => Model.Entry_Date, null, new { @class = "text-danger" })</div>
+        </div>
+        <br />
+        <div class="row ">
+            <div class="col-lg-3">@Html.LabelFor(Model => Model.Note, new { @class = "text-primary" })</div>
+            <div class="col-lg-5">@Html.TextBoxFor(Model => Model.Note, new { @class = "form-control" })</div>
+            <div class="col-lg-3">@Html.ValidationMessageFor(Model => Model.Note, null, new { @class = "text-danger" })</div>
+        </div>
+        <br />
+        <div class="row ">
+            <div class="col-lg-3">@Html.LabelFor(Model => Model.Eexp_Rev_type.ex_re_type, " Expenses or Revenues Type", new { @class = "text-primary" })</div>
+            <div class="col-lg-5">@Html.DropDownListFor(Model => Model.id_ex_re, (SelectList)ViewBag.type, "Choose type", new { @class = "form-control" })</div>
+            <div class="col-lg-3">@Html.ValidationMessageFor(Model => Model.id_ex_re, null, new { @class = "text-danger" })</div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-lg-12">
+                <center>
+                    <input type="submit" value="Edit" class="btn btn-primary" />
+                </center>
+            </div>
+        </div>
+    }
+</div>

@@ -1,0 +1,53 @@
+﻿
+
+@{
+    ViewBag.Title = "Index";
+}
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<br />
+<br />
+<br />
+<h3>@Html.ActionLink("Create New Item", "Create", "ITFusion", new { @class = "btn btn-primary " })</h3>
+<br />
+@*<button type="button" class="btn btn-primary" id="createitem">Create New Item</button>*@
+
+<table class="table table-bordered table-hover table-striped text-center col-lg-9 ">
+    <thead>
+        <tr>
+            <th class="text-center">Id</th>
+            <th class="text-center">Product Name </th>
+            <th class="text-center">Expenses or revenues</th>
+            <th class="text-center">Fees</th>
+            <th class="text-center">Date Time</th>
+            <th class="text-center">Notes</th>
+            <th class="text-center">Edit</th>
+            <th class="text-center">Delete</th>
+        </tr>
+    </thead>
+    <tbody class="tbody">
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ID</td>
+                <td>@item.Exp_Rev_Name</td>
+                <td>@item.Eexp_Rev_type.ex_re_type</td>
+                <td>@item.Fees</td>
+                <td>@item.Entry_Date</td>
+                <td>@item.Note</td>
+                <td><a href="/ITFusion/Update/@item.ID" class="edit btn btn-primary">Edit</a></td>
+                <td><a href="/ITFusion/Delete/@item.ID" class="delet btn btn-danger">Delete</a></td>
+
+                @*<td><button type="button" class="btn btn-primary" id="editproducr">Edit</button></td>
+                    <td><button type="button" class="btn btn-danger" id="deleteproduct">Delete</button></td>*@
+
+            </tr>
+        }
+    </tbody>
+</table>
+<h4>Cost of total   : @ViewBag.total</h4>
+<h4>Cost of Expenses: @ViewBag.expenses</h4>
+<h4>Cost of Revenues: @ViewBag.revenues</h4>
+
+
+

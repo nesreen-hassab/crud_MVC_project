@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Eexp_Rev_type">
+    <Key>
+      <PropertyRef Name="id_ex_re" />
+    </Key>
+    <Property Name="id_ex_re" Type="int" Nullable="false" />
+    <Property Name="ex_re_type" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="IT_Expenses_Revenues">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Entry_Date" Type="datetime" />
+    <Property Name="Exp_Rev_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Fees" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Note" Type="nvarchar(max)" />
+    <Property Name="id_ex_re" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_IT_Expenses_Revenues_Eexp_Rev_type">
+    <End Role="Eexp_Rev_type" Type="Self.Eexp_Rev_type" Multiplicity="1" />
+    <End Role="IT_Expenses_Revenues" Type="Self.IT_Expenses_Revenues" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Eexp_Rev_type">
+        <PropertyRef Name="id_ex_re" />
+      </Principal>
+      <Dependent Role="IT_Expenses_Revenues">
+        <PropertyRef Name="id_ex_re" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ModelStoreContainer">
+    <EntitySet Name="Eexp_Rev_type" EntityType="Self.Eexp_Rev_type" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="IT_Expenses_Revenues" EntityType="Self.IT_Expenses_Revenues" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_IT_Expenses_Revenues_Eexp_Rev_type" Association="Self.FK_IT_Expenses_Revenues_Eexp_Rev_type">
+      <End Role="Eexp_Rev_type" EntitySet="Eexp_Rev_type" />
+      <End Role="IT_Expenses_Revenues" EntitySet="IT_Expenses_Revenues" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
